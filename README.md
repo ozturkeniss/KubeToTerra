@@ -31,13 +31,7 @@ A comprehensive microservices platform built with Go, featuring user management 
 - **Health Checks**: Liveness & Readiness probes
 
 ## 📁 Project Structure
-
-
-
-![Uploading ChatGPT Image Jun 22, 2025, 09_10_45 PM.png…]()
-
-
-
+![ChatGPT Image Jun 22, 2025, 09_10_45 PM](https://github.com/user-attachments/assets/03474c5b-fe75-4e38-9248-e5c9530ae54f)
 
 ## 🎯 Core Features
 
