@@ -1,0 +1,55 @@
+version: '3.8'
+
+services:
+  # PostgreSQL Database - Development overrides
+  postgres:
+    environment:
+      POSTGRES_PASSWORD: postgres123
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./scripts/create-databases.sh:/docker-entrypoint-initdb.d/create-databases.sh:ro
+      # Optional: Mount logs for debugging
+      # - ./logs/postgres:/var/log/postgresql
+
+  # User Service - Development overrides
+  user-service:
+    build:
+      context: .
+      dockerfile: docker/user-service.Dockerfile
+    environment:
+      DB_PASSWORD: postgres123
+      GIN_MODE: debug
+    volumes:
+      # Mount source code for hot reload (if needed)
+      - ./internal/user:/app/internal/user:ro
+      - ./cmd/user:/app/cmd/user:ro
+      # - ./logs/user-service:/app/logs
+    restart: unless-stopped
+
+  # Order Service - Development overrides
+  order-service:
+    build:
+      context: .
+      dockerfile: docker/order-service.Dockerfile
+    environment:
+      DB_PASSWORD: postgres123
+      GIN_MODE: debug
+    volumes:
+      # Mount source code for hot reload (if needed)
+      - ./internal/order:/app/internal/order:ro
+      - ./cmd/order:/app/cmd/order:ro
+      # - ./logs/order-service:/app/logs
+    restart: unless-stopped
+
+  # API Gateway - Development overrides
+  api-gateway:
+    build:
+      context: .
+      dockerfile: docker/api-gateway.Dockerfile
+    environment:
+      GIN_MODE: debug
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
+    driver: local 

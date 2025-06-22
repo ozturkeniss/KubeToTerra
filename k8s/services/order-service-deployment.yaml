@@ -1,0 +1,91 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: order-service-deployment
+  namespace: bweng
+  labels:
+    app: bweng-microservices
+    component: order-service
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: bweng-microservices
+      component: order-service
+  template:
+    metadata:
+      labels:
+        app: bweng-microservices
+        component: order-service
+    spec:
+      containers:
+      - name: order-service
+        image: bweng-order-service:latest
+        imagePullPolicy: Never
+        ports:
+        - name: http
+          containerPort: 8081
+        env:
+        - name: DB_HOST
+          valueFrom:
+            configMapKeyRef:
+              name: bweng-config
+              key: DB_HOST
+        - name: DB_PORT
+          valueFrom:
+            configMapKeyRef:
+              name: bweng-config
+              key: DB_PORT
+        - name: DB_USER
+          valueFrom:
+            configMapKeyRef:
+              name: bweng-config
+              key: DB_USER
+        - name: DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: bweng-app-secret
+              key: DB_PASSWORD
+        - name: DB_NAME
+          valueFrom:
+            configMapKeyRef:
+              name: bweng-config
+              key: DB_NAME_ORDER
+        - name: DB_SSLMODE
+          valueFrom:
+            configMapKeyRef:
+              name: bweng-config
+              key: DB_SSLMODE
+        - name: GIN_MODE
+          valueFrom:
+            configMapKeyRef:
+              name: bweng-config
+              key: GIN_MODE
+        - name: USER_SERVICE_GRPC_HOST
+          value: "user-service"
+        - name: USER_SERVICE_GRPC_PORT
+          valueFrom:
+            configMapKeyRef:
+              name: bweng-config
+              key: GRPC_PORT
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "100m"
+          limits:
+            memory: "256Mi"
+            cpu: "200m"
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 8081
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          timeoutSeconds: 5
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 8081
+          initialDelaySeconds: 5
+          periodSeconds: 5
+          timeoutSeconds: 3 

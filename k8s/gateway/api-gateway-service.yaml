@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: api-gateway-service
+  namespace: bweng
+  labels:
+    app: bweng-microservices
+    component: api-gateway
+spec:
+  selector:
+    app: bweng-microservices
+    component: api-gateway
+  ports:
+  - name: http
+    port: 8082
+    targetPort: 8082
+    protocol: TCP
+  type: ClusterIP 
