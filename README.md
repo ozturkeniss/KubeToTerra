@@ -4,7 +4,8 @@ A comprehensive microservices platform built with Go, featuring user management 
 
 ## 🏗️ Architecture Overview
 
-![ChatGPT Image Jun 22, 2025, 09_10_45 PM](https://github.com/user-attachments/assets/344f1d0b-acf9-492b-9e2e-12d07687ef81)
+
+![ChatGPT Image Jun 22, 2025, 09_16_15 PM](https://github.com/user-attachments/assets/49674514-4f53-4143-a8cd-cbae8ece6700)
 
 
 ## 🚀 Technology Stack
@@ -31,50 +32,8 @@ A comprehensive microservices platform built with Go, featuring user management 
 
 ## 📁 Project Structure
 
-```
-bweng/
-├── api/                          # Protocol Buffers definitions
-│   └── proto/
-│       ├── user/                 # User service gRPC definitions
-│       └── order/                # Order service gRPC definitions
-├── cmd/                          # Application entry points
-│   ├── user/                     # User service binary
-│   └── order/                    # Order service binary
-├── internal/                     # Internal application code
-│   ├── user/                     # User service implementation
-│   │   ├── config/              # Database configuration
-│   │   ├── handler/             # HTTP handlers
-│   │   ├── model/               # Data models
-│   │   ├── repository/          # Data access layer
-│   │   └── service/             # Business logic
-│   └── order/                   # Order service implementation
-│       ├── config/              # Database configuration
-│       ├── handler/             # HTTP handlers
-│       ├── model/               # Data models
-│       ├── repository/          # Data access layer
-│       └── service/             # Business logic
-├── gingateway/                   # API Gateway implementation
-├── k8s/                         # Kubernetes manifests
-│   ├── config/                  # ConfigMaps & Secrets
-│   ├── database/                # PostgreSQL deployment
-│   ├── gateway/                 # API Gateway deployment
-│   ├── services/                # Microservices deployments
-│   ├── storage/                 # Persistent volumes
-│   └── ingress/                 # Ingress configurations
-├── terraform/                   # Infrastructure as Code
-│   ├── main.tf                  # Main Terraform configuration
-│   ├── variables.tf             # Variable definitions
-│   ├── outputs.tf               # Output definitions
-│   ├── config.tf                # ConfigMaps & Secrets
-│   ├── user-service.tf          # User service resources
-│   ├── order-service.tf         # Order service resources
-│   ├── api-gateway.tf           # API Gateway resources
-│   └── postgresql.tf            # PostgreSQL resources
-├── docker/                      # Docker configurations
-├── scripts/                     # Utility scripts
-├── docs/                        # Documentation
-└── logs/                        # Application logs
-```
+![Uploading ChatGPT Image Jun 22, 2025, 09_10_45 PM.png…]()
+
 
 ## 🎯 Core Features
 
