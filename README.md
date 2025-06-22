@@ -4,49 +4,8 @@ A comprehensive microservices platform built with Go, featuring user management 
 
 ## 🏗️ Architecture Overview
 
-```mermaid
-graph TB
-    subgraph "Client Layer"
-        Client[Web Client]
-        Mobile[Mobile App]
-    end
-    
-    subgraph "API Gateway"
-        Gateway[Gin API Gateway<br/>Port: 8082]
-    end
-    
-    subgraph "Microservices Layer"
-        UserService[User Service<br/>Port: 8080]
-        OrderService[Order Service<br/>Port: 8081]
-    end
-    
-    subgraph "Communication"
-        gRPC[gRPC Communication<br/>Port: 50051]
-    end
-    
-    subgraph "Data Layer"
-        PostgreSQL[(PostgreSQL<br/>Port: 5432)]
-    end
-    
-    subgraph "Infrastructure"
-        K8s[Kubernetes Cluster]
-        Terraform[Terraform IaC]
-    end
-    
-    Client --> Gateway
-    Mobile --> Gateway
-    Gateway --> UserService
-    Gateway --> OrderService
-    OrderService --> gRPC
-    gRPC --> UserService
-    UserService --> PostgreSQL
-    OrderService --> PostgreSQL
-    K8s --> UserService
-    K8s --> OrderService
-    K8s --> Gateway
-    K8s --> PostgreSQL
-    Terraform --> K8s
-```
+![ChatGPT Image Jun 22, 2025, 09_10_45 PM](https://github.com/user-attachments/assets/344f1d0b-acf9-492b-9e2e-12d07687ef81)
+
 
 ## 🚀 Technology Stack
 
